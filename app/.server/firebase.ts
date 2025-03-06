@@ -16,7 +16,6 @@ if (getApps().length > 0) {
   app = getApps()[0];
 } else {
   app = initializeApp(firebaseConfig);
-  console.log("🚀 ~ firebase.ts:19 ~ app:", app);
 }
 
 export const db = getFirestore(app);
