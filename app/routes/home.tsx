@@ -1,6 +1,7 @@
 import Background from "~/components/background";
 import type { Route } from "./+types/home";
-import { Form, useFetcher } from "react-router";
+import { Form, useFetcher, type ActionFunctionArgs } from "react-router";
+import { storeUrl } from "~/.server/short";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,8 +10,9 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export default function Home({ actionData }: Route.ComponentProps) {
   const fetcher = useFetcher();
+  console.log(fetcher.data);
   return (
     <>
       <Background />
@@ -26,7 +28,7 @@ export default function Home() {
         </p>
 
         <div className="mt-14">
-          <fetcher.Form>
+          <fetcher.Form method="post">
             <input
               type="url"
               name="url"
@@ -41,7 +43,18 @@ export default function Home() {
             </button>
           </fetcher.Form>
         </div>
+        {fetcher.data ? <p>{fetcher.data}</p> : null}
       </div>
     </>
   );
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  console.log("action");
+
+  const formData = await request.formData();
+  const url = formData.get("url") as string;
+  const res = await storeUrl(url);
+  console.log("🚀 ~ home.tsx:57 ~ action ~ res:", res);
+  return res;
 }
