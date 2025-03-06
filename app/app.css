@@ -23,3 +23,5 @@ body {
     color-scheme: dark;
   } */
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

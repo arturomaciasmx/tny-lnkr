@@ -17,8 +17,7 @@ export default function Home({}: Route.ComponentProps) {
 
   return (
     <>
-      <Background />
-      <div className="container mx-auto max-w-[900px] z-10 relative pt-28">
+      <div className="container mx-auto max-w-[900px] flex-auto">
         <h1 className="text-dark text-8xl font-extrabold uppercase text-center -tracking-widest dark:text-light">
           ✨ Shorten Your Links,{" "}
           <span className="from-primary to-accent bg-gradient-to-r bg-clip-text text-transparent">

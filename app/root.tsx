@@ -9,10 +9,16 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import Background from "./components/background";
+import { useState } from "react";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [isDark, setIsDark] = useState(false);
+
   return (
-    <html lang="en">
+    <html lang="en" className={isDark ? "dark" : ""}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,7 +26,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Background />
+        <div className="relative flex flex-col min-h-dvh">
+          <Header setIsDark={setIsDark} isDark={isDark} />
+          {children}
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
