@@ -22,7 +22,7 @@ export async function storeUrl(url: string) {
     if (!existingDocs.empty) {
       console.log("🚀 ~ short.ts:18 ~ storeUrl ~ Url already exists ⚠️");
       const existingDoc = existingDocs.docs[0].data();
-      return `https://tny-lnkr/${existingDoc.shortCode}`;
+      return `https://tny-lnkr.com/${existingDoc.shortCode}`;
     }
 
     const shortCode = generateShortCode();
